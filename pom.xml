@@ -16,6 +16,14 @@
     </dependency>
   </dependencies>
   <build>
+<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+                <outputDirectory>C:\DocumentacionIsaac\aplicaciones\apache-tomcat-9.0.8</outputDirectory>
+            </configuration>
+        </plugin>
+</plugins>
     <finalName>TestJK</finalName>
   </build>
 </project>
