@@ -1,69 +1,57 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>Isaac</groupId>
-  <artifactId>TestJK</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>TestJK Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  </properties>
-  
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-	 <!-- Spring -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>4.1.0.RELEASE</version>
-    </dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>Isaac</groupId>
+	<artifactId>TestJK</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>TestJK Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
 	
-	   <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>4.1.0.RELEASE</version>
-      <scope>test</scope>
-    </dependency>
+	<profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>environment</env>
+                <profile.dir>C:\DocumentacionIsaac\aplicaciones\apache-tomcat-9.0.8\webapps</profile.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>environment.prod</env>
+                <dirsalida>/home/ec2-user/apache-tomcat-9.0.10/webapps/</dirsalida>
+            </properties>
+        </profile>
+    </profiles>
 	
-	<dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.6</version>
-    </dependency>
- 
-    <dependency>
-      <groupId>commons-dbcp</groupId>
-      <artifactId>commons-dbcp</artifactId>
-      <version>1.2.2</version>
-    </dependency>
+	<build>
 	
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-	
-  </dependencies>
-  <build>
-	  <plugins>
-<plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <configuration>
-                <outputDirectory>/home/ec2-user/apache-tomcat-9.0.8/webapps</outputDirectory>
-            </configuration>
-        </plugin>
-		 </plugins>
-    <finalName>TestJK</finalName>
-  </build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${dirsalida}</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>TestJK</finalName>
+	</build>
 </project>
